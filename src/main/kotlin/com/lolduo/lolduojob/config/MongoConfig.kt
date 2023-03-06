@@ -4,7 +4,6 @@ import com.lolduo.lolduojob.config.secret.AwsSecret
 import com.lolduo.lolduojob.config.secret.MongoDB_Secret
 import com.mongodb.ConnectionString
 import com.mongodb.MongoClientSettings
-import com.mongodb.client.MongoClient
 import com.mongodb.client.MongoClients
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -31,7 +30,7 @@ class MongoConfig(
     }
 
     @Bean
-    fun mongoTemplate(mongoClient: MongoClient): MongoTemplate {
+    fun mongoTemplate(): MongoTemplate {
         return MongoTemplate(mongoDatabaseFactory())
     }
 }
