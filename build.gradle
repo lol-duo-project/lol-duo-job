@@ -28,7 +28,14 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("com.squareup.okhttp3:okhttp:4.9.2")
+
+    //gson
+    implementation("com.google.code.gson:gson:2.8.8")
+
+    //mongo
+    implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
+
 }
 
 tasks.withType(KotlinCompile) {

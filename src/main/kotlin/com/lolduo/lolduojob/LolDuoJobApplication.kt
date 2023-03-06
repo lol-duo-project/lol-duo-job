@@ -1,5 +1,6 @@
 package com.lolduo.lolduojob
 
+import com.lolduo.lolduojob.jobs.ChampionInfoJob
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
@@ -7,5 +8,8 @@ import org.springframework.boot.runApplication
 class LolDuoJobApplication
 
 fun main(args: Array<String>) {
-    runApplication<LolDuoJobApplication>(*args)
+
+    val context = runApplication<LolDuoJobApplication>(*args)
+    val championInfoJob = context.getBean(ChampionInfoJob::class.java)
+    championInfoJob.run()
 }
