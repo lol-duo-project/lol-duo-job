@@ -1,0 +1,14 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: lol-duo-champion-info-cronjob
+spec:
+  schedule: "0 0 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: lol-duo-champion-info
+              image: 431955170593.dkr.ecr.ap-northeast-2.amazonaws.com/lol-duo-job:latest
+          restartPolicy: Never
