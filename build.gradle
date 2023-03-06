@@ -36,6 +36,9 @@ dependencies {
     //mongo
     implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
 
+    //aws secret manager
+    implementation("com.amazonaws:aws-java-sdk-secretsmanager:1.12.41")
+
 }
 
 tasks.withType(KotlinCompile) {

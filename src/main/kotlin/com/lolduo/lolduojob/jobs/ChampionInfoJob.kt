@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service
 
 @Service
 class ChampionInfoJob(
-    private val mongoTemplate: MongoTemplate
+    private val mongoTemplate: MongoTemplate,
 ) {
 
     fun run() {
@@ -31,6 +31,7 @@ class ChampionInfoJob(
                 println("Error response from Riot API$championUrl")
             }
         }
+
     }
 
     private inline fun <reified T> getResponse(url: String): T {
