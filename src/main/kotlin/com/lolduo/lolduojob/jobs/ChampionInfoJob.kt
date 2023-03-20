@@ -13,13 +13,19 @@ class ChampionInfoJob(
 ) {
 
     fun run() {
-        val versionUrl = "http://localhost:8080/version"
-        val localesUrl = "http://localhost:8080/locales"
+        var url = "http://localhost"
+        //get profile
+        if(System.getProperty("spring.profiles.active") == "prod") {
+            url = "http://riot-api-service"
+        }
+
+        val versionUrl = "${url}/version"
+        val localesUrl = "${url}/locales"
         val versionList = getResponse<Array<String>>(versionUrl)
         val localeList = getResponse<Array<String>>(localesUrl)
 
         for(locale in localeList) {
-            val championUrl = "http://localhost:8080/champions?version=${versionList[0]}&locale=$locale"
+            val championUrl = "${url}/champions?version=${versionList[0]}&locale=$locale"
             try {
                 val championList = getResponse<Array<ChampionInfo>>(championUrl)
                 for(champion in championList) {
@@ -35,6 +41,7 @@ class ChampionInfoJob(
     }
 
     private inline fun <reified T> getResponse(url: String): T {
+        println(url)
         val okHttpClient = OkHttpClient()
         val request = Request.Builder()
             .url(url)

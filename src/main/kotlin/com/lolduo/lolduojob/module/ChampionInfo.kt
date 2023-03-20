@@ -6,7 +6,7 @@ import com.lolduo.lolduojob.module.championInfo.Stats
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
 
-@Document
+@Document(collection = "championInfo")
 data class ChampionInfo(
     @Id var uniqueId: String,
     val id: String,

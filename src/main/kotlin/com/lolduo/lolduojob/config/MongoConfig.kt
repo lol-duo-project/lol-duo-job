@@ -25,7 +25,7 @@ class MongoConfig(
             .build()
         return SimpleMongoClientDatabaseFactory(
             MongoClients.create(mongoClientSettings),
-            "championInfo"
+            "riotDB"
         )
     }
 
