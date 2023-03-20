@@ -10,9 +10,8 @@ import org.springframework.stereotype.Component
 @Profile("prod")
 class AwsSecretProd (private val awsSecretsManager: AWSSecretsManager) : AwsSecret{
     override fun getSecret(secretName: String): Any {
-
         val getSecretValueRequest = GetSecretValueRequest()
-            .withSecretId(secretName)
+                .withSecretId(secretName)
         val getSecretValueResult = awsSecretsManager.getSecretValue(getSecretValueRequest)
         return Gson().fromJson(getSecretValueResult.secretString, Any::class.java)
     }
