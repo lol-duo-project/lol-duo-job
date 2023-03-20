@@ -39,6 +39,7 @@ class ChampionInfoJob(
     }
 
     private inline fun <reified T> getResponse(url: String): T {
+        println(url)
         val okHttpClient = OkHttpClient()
         val request = Request.Builder()
             .url(url)
