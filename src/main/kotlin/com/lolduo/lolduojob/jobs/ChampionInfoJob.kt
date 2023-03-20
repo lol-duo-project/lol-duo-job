@@ -14,8 +14,10 @@ class ChampionInfoJob(
 
     fun run() {
         var url = "http://localhost"
-        if(System.getenv("ENV") == "prod")
+        //get profile
+        if(System.getProperty("spring.profiles.active") == "prod") {
             url = "http://riot-api-service"
+        }
 
         val versionUrl = "${url}/version"
         val localesUrl = "${url}/locales"
