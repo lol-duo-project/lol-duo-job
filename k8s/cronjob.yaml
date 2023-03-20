@@ -1,0 +1,18 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: riot-champion-job
+  namespace: prod-lol-duo
+  labels:
+    app: riot-champion-job
+spec:
+  schedule: "00 00 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: rest-api-kotlin-container
+              image: 431955170593.dkr.ecr.ap-northeast-2.amazonaws.com/lol-duo-job:latest
+              imagePullPolicy: Always
+          restartPolicy: OnFailure
