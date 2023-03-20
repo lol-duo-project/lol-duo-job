@@ -18,12 +18,8 @@ class MongoConfig(
 
     @Bean
     fun mongoDatabaseFactory(): MongoDatabaseFactory {
-        val connectionURL = secret.getSecret("prod/mongoDB") as Map<String, String>
-        val mongoDBSecret = MongoDB_Secret(
-                mongoDB_URL = connectionURL["mongoDB_URL"] ?: "",
-                mongoDB_Read_URL = connectionURL["mongoDB_Read_URL"] ?: ""
-        )
-        val connectionString = ConnectionString(mongoDBSecret.mongoDB_URL)
+        val connectionURL = secret.getSecret("prod/mongoDB") as MongoDB_Secret
+        val connectionString = ConnectionString(connectionURL.mongoDB_URL)
         val mongoClientSettings = MongoClientSettings.builder()
             .applyConnectionString(connectionString)
             .build()

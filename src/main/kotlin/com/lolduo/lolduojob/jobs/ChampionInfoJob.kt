@@ -15,7 +15,7 @@ class ChampionInfoJob(
     fun run() {
         var url = "http://localhost"
         if(System.getenv("ENV") == "prod")
-            url = "http://172.20.22.178"
+            url = "http://riot-api-service"
 
         val versionUrl = "${url}/version"
         val localesUrl = "${url}/locales"
