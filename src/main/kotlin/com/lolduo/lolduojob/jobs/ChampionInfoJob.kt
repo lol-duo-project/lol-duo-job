@@ -13,13 +13,17 @@ class ChampionInfoJob(
 ) {
 
     fun run() {
-        val versionUrl = "http://localhost:8080/version"
-        val localesUrl = "http://localhost:8080/locales"
+        var url = "http://localhost"
+        if(System.getenv("ENV") == "prod")
+            url = "http://172.20.22.178"
+
+        val versionUrl = "${url}/version"
+        val localesUrl = "${url}/locales"
         val versionList = getResponse<Array<String>>(versionUrl)
         val localeList = getResponse<Array<String>>(localesUrl)
 
         for(locale in localeList) {
-            val championUrl = "http://localhost:8080/champions?version=${versionList[0]}&locale=$locale"
+            val championUrl = "${url}/champions?version=${versionList[0]}&locale=$locale"
             try {
                 val championList = getResponse<Array<ChampionInfo>>(championUrl)
                 for(champion in championList) {
